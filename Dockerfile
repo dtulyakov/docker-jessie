@@ -29,4 +29,7 @@ RUN apt-get update \
       zlib1g-dev \
     && apt-get clean \
     && apt-get autoremove -y \
-    && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*.deb
+    && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/* /var/cache/apt/archives/*.deb \
+    && echo 'Europe/Moscow' > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata \
+    && update-locale "LANG=C.UTF-8" && update-locale "LC_ALL=C.UTF-8" \
+    && dpkg-reconfigure -f noninteractive locales && locale-gen
